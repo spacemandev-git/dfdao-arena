@@ -38,6 +38,7 @@ import './tasks/faucet';
 require('dotenv').config();
 
 const { DEPLOYER_MNEMONIC, ADMIN_PUBLIC_ADDRESS } = process.env;
+const { ALTLAYER_DEPLOYER_KEY, ALTLAYER_RPC_URL, ALTLAYER_CHAIN_ID } = process.env;
 
 const AbiItemsToIgnore = [
   {
@@ -107,6 +108,13 @@ const xdai = {
   gasMultiplier: 5,
 };
 
+// altlayer
+const altlayer = {
+  url: ALTLAYER_RPC_URL as string,
+  accounts: [ALTLAYER_DEPLOYER_KEY as string],
+  chainId: parseInt(ALTLAYER_CHAIN_ID as string),
+}
+
 // The mainnet config, but it isn't added to networks unless we have a DEPLOYER_MNEMONIC
 const mainnet = {
   // Brian's Infura endpoint (free tier)
@@ -146,6 +154,7 @@ const config: HardhatUserConfig = {
     ...(DEPLOYER_MNEMONIC ? { kovan_optimism } : undefined),
     ...(DEPLOYER_MNEMONIC ? { xdai } : undefined),
     ...(DEPLOYER_MNEMONIC ? { mainnet } : undefined),
+    ...{ altlayer },
     localhost: {
       url: 'http://0.0.0.0:8545/',
       accounts: {
@@ -160,17 +169,20 @@ const config: HardhatUserConfig = {
       accounts: [
         // from/deployer is default the first address in accounts
         {
+          // trunk-ignore(gitleaks/generic-api-key)
           privateKey: '0x044C7963E9A89D4F8B64AB23E02E97B2E00DD57FCB60F316AC69B77135003AEF',
           balance: '100000000000000000000',
         },
         // user1 in tests
         {
+          // trunk-ignore(gitleaks/generic-api-key)
           privateKey: '0x523170AAE57904F24FFE1F61B7E4FF9E9A0CE7557987C2FC034EACB1C267B4AE',
           balance: '100000000000000000000',
         },
         // user2 in tests
         // admin account
         {
+          // trunk-ignore(gitleaks/generic-api-key)
           privateKey: '0x67195c963ff445314e667112ab22f4a7404bad7f9746564eb409b9bb8c6aed32',
           balance: '100000000000000000000',
         },
