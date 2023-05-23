@@ -1,4 +1,5 @@
-import { FAUCET_ADDRESS } from '@darkforest_eth/contracts';
+//import { FAUCET_ADDRESS } from '@darkforest_eth/contracts';
+const FAUCET_ADDRESS = "";
 import { DFArenaFaucet } from '@darkforest_eth/contracts/typechain';
 import { EthConnection, weiToEth } from '@darkforest_eth/network';
 import {
@@ -194,6 +195,7 @@ export const submitWhitelistKey = async (
 export async function sendDrip(connection: EthConnection, address: EthAddress) {
   // If drip fails
   try {
+    return;
     const currBalance = weiToEth(await connection.loadBalance(address));
     const faucet = await connection.loadContract<DFArenaFaucet>(FAUCET_ADDRESS, loadFaucetContract);
     const nextAccessTimeSeconds = (await faucet.getNextAccessTime(address)).toNumber();
