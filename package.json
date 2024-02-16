@@ -31,6 +31,7 @@
     "test": "yarn workspaces run test",
     "lint": "yarn workspaces run lint",
     "format": "yarn workspaces run format",
+    "deploy:prod": "yarn deploy:contracts:arena:prod && yarn deploy:client:prod",
     "deploy:contracts": "yarn workspace eth hardhat:dev deploy --whitelist false",
     "deploy:contracts:arena": "yarn workspace eth hardhat:dev arena:deploy --faucet true --fund 5",
     "deploy:contracts:arena:prod": "yarn workspace eth hardhat:prod arena:deploy --faucet false",
