@@ -17,11 +17,9 @@ import {
 } from '../../../Frontend/Utils/constants';
 import { getGraphQLData } from '../GraphApi';
 import { getAllTwitters } from '../UtilityServerAPI';
-import RegistryAbi from "@dfdao/dynasty/abi/Registry.json";
+//import RegistryAbi from "@dfdao/dynasty/abi/Registry.json";
 // Contract addresses
-import deploymentUrl from "@dfdao/dynasty/deployment.json";
 import { Contract, ethers, providers, Wallet } from 'ethers';
-import { Registry } from '@dfdao/dynasty/types'
 
 /**
  * Purpose:
@@ -109,24 +107,24 @@ export async function loadRegistryContract<T extends Contract>(
   provider: providers.JsonRpcProvider,
   signer?: Wallet
 ): Promise<T> {
-  const abi = await fetch(RegistryAbi).then((r) => r.json());
+  const abi = await fetch("").then((r) => r.json());
   return createContract<T>(address, abi.abi, provider, signer);
 }
 
 export async function loadRegistry(
   ethConnection: EthConnection,
 ): Promise<GrandPrixMetadata[]> {
-  if(DUMMY) {
+  if (DUMMY) {
     return SEASON_GRAND_PRIXS;
   }
-  
-  const deployment = await fetch(deploymentUrl).then((r) => r.json());
 
-  const registry = await ethConnection.loadContract<Registry>(deployment.registry, loadRegistryContract);
+  const deployment = await fetch("").then((r) => r.json());
+
+  const registry = await ethConnection.loadContract<any>(deployment.registry, loadRegistryContract);
   const allGrandPrix = await registry.getAllGrandPrix();
   const metadata: GrandPrixMetadata[] = [];
-  allGrandPrix.map(gp => {
-    if(gp.parentAddress != ethers.constants.AddressZero) {
+  allGrandPrix.map((gp: any) => {
+    if (gp.parentAddress != ethers.constants.AddressZero) {
       metadata.push({
         configHash: gp.configHash,
         seasonId: gp.seasonId.toNumber(),
