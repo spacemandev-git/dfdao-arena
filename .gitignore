@@ -8,3 +8,5 @@ node_modules/
 **/logs.txt
 
 **/nohup.out
+
+dist/

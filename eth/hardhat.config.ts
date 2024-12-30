@@ -39,6 +39,7 @@ require('dotenv').config();
 
 const { DEPLOYER_MNEMONIC, ADMIN_PUBLIC_ADDRESS } = process.env;
 const { ALTLAYER_DEPLOYER_KEY, ALTLAYER_RPC_URL, ALTLAYER_CHAIN_ID } = process.env;
+const { ANVIL_DEPLOYER_KEY, ANVIL_RPC_URL, ANVIL_CHAIN_ID } = process.env;
 
 const AbiItemsToIgnore = [
   {
@@ -48,7 +49,7 @@ const AbiItemsToIgnore = [
   },
   {
     facet: 'DFAdminFacet',
-    events: ['AdminPlanetCreated','PauseStateChanged'],
+    events: ['AdminPlanetCreated', 'PauseStateChanged'],
   },
   // {
   //   facet: 'DFArenaGetterFacet',
@@ -115,6 +116,13 @@ const altlayer = {
   chainId: parseInt(ALTLAYER_CHAIN_ID as string),
 }
 
+// anvil
+const anvil = {
+  url: ANVIL_RPC_URL as string,
+  accounts: [ANVIL_DEPLOYER_KEY as string],
+  chainId: parseInt(ANVIL_CHAIN_ID as string),
+}
+
 // The mainnet config, but it isn't added to networks unless we have a DEPLOYER_MNEMONIC
 const mainnet = {
   // Brian's Infura endpoint (free tier)
@@ -155,6 +163,7 @@ const config: HardhatUserConfig = {
     ...(DEPLOYER_MNEMONIC ? { xdai } : undefined),
     ...(DEPLOYER_MNEMONIC ? { mainnet } : undefined),
     ...{ altlayer },
+    ...{ anvil },
     localhost: {
       url: 'http://0.0.0.0:8545/',
       accounts: {
