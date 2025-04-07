@@ -6,13 +6,3 @@ services:
     ports:
       - "8545:8545"
     command: ["anvil", "-m", "change typical hire slam amateur loan grid fix drama electric seed label", "--chain-id", "42069"]
-  dfarena-faucet:
-    build:
-      context: ./dfarena-faucet
-      dockerfile: Dockerfile
-    image: dfarena-faucet:bun
-    ports:
-      - "3000:3000"
-    environment:
-      - FAUCET_PRIVATE_KEY=${FAUCET_PRIVATE_KEY}
-    restart: unless-stopped 
