@@ -10,7 +10,7 @@ const client = createWalletClient({
     chain: {
         id: 42069,
         rpcUrls: {
-            default: { http: ['https://dfarena.spacemandev.games'] }
+            default: { http: [process.env.DEFAULT_RPC as string] }
         },
         name: "dfarena",
         nativeCurrency: {

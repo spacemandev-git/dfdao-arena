@@ -2,7 +2,8 @@
 
 ### Scripts
 
-yarn deploy:prod
+yarn deploy:contracts:arena:prod
+netlify build --filter client && netlify deploy --filter client --prod
 
 ### Digital Ocean
 

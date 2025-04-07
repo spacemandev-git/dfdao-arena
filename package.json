@@ -39,7 +39,7 @@
     "deploy:contracts:arena:gnosis_optimism:prod": "yarn workspace eth hardhat:go arena:deploy --faucet true --fund 1",
     "deploy:contracts:arena:kovan_optimism:prod": "yarn workspace eth hardhat:ko arena:deploy --faucet true --fund 1",
     "deploy:client": "netlify build && netlify deploy",
-    "deploy:client:prod": "netlify build && netlify deploy --prod",
+    "deploy:client:prod": "netlify build --filter client && netlify deploy --filter client --prod",
     "deploy:upgrades": "yarn workspace eth hardhat:dev arena:upgrade",
     "deploy:upgrades:prod": "yarn workspace eth hardhat:prod arena:upgrade",
     "wait:node": "wait-on tcp:8545",
