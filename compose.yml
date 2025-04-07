@@ -1,8 +1,0 @@
-name: "DFArena-Foundry"
-
-services:
-  anvil:
-    image: ghcr.io/foundry-rs/foundry:latest
-    ports:
-      - "8545:8545"
-    command: ["anvil", "-m", "change typical hire slam amateur loan grid fix drama electric seed label", "--chain-id", "42069"]
