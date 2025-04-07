@@ -1,5 +1,4 @@
-# Stage 1: Build the application
-FROM node:16 as build
+FROM node:16
 
 WORKDIR /app
 
@@ -15,17 +14,11 @@ COPY . .
 # Build the application
 RUN yarn build
 
-# Stage 2: Serve the application with nginx
-FROM nginx:alpine
+# Install a simple static file server
+RUN yarn global add serve
 
-# Copy built files from the build stage
-COPY --from=build /app/dist /usr/share/nginx/html
+# Expose port 3000
+EXPOSE 3000
 
-# Copy nginx config if needed
-# COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Expose port 80
-EXPOSE 80
-
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"] 
+# Serve the static files
+CMD ["serve", "-s", "dist", "-l", "3000"] 
