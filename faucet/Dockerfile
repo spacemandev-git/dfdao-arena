@@ -11,7 +11,9 @@ COPY . .
 
 # Build with environment variables available
 ARG FAUCET_PRIVATE_KEY
+ARG DEFAULT_RPC
 ENV FAUCET_PRIVATE_KEY=${FAUCET_PRIVATE_KEY}
+ENV DEFAULT_RPC=${DEFAULT_RPC}
 
 RUN bun run build
 
