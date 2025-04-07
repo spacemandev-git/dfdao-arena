@@ -9,7 +9,7 @@ services:
   dfarena-faucet:
     build:
       context: ./dfarena-faucet
-      dockerfile: dfarena-faucet/Dockerfile
+      dockerfile: Dockerfile
     image: dfarena-faucet:bun
     ports:
       - "3000:3000"
