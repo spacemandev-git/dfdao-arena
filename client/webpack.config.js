@@ -115,13 +115,13 @@ module.exports = {
     // The string values are fallbacks if the env variable is not set
     new EnvironmentPlugin({
       NODE_ENV: 'development',
-      DEFAULT_RPC: 'https://rpc-df.xdaichain.com/',
+      DEFAULT_RPC: 'https://rpc.spacemandev.games',
       // This must be null to indicate to webpack that this environment variable is optional
       DF_WEBSERVER_URL: null,
       DF_TWITTER_URL: null,
       FAUCET_URL: null,
       DFDAO_WEBSERVER_URL: null,
-      GRAPH_URL: 'http://localhost:8000/subgraphs/name/df',
+      GRAPH_URL: null,
     }),
     new HtmlWebpackPlugin({
       template: './index.html',

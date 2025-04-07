@@ -48,10 +48,10 @@ export async function loadInitContract<T extends Contract>(
 export function getEthConnection(): Promise<EthConnection> {
   const isProdNetwork = NETWORK.toString() !== 'localhost' && NETWORK.toString() !== 'hardhat';
   const defaultUrl = process.env.DEFAULT_RPC as string;
-
+  console.log(`defaultUrl: ${defaultUrl}`);
   let url: string;
   if (isProdNetwork) {
-    url = localStorage.getItem('XDAI_RPC_ENDPOINT_v5') || defaultUrl;
+    url = defaultUrl || 'https://rpc.spacemandev.games';
   } else {
     url = 'http://localhost:8545';
   }

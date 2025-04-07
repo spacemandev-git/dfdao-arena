@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:18
 
 WORKDIR /app
 
@@ -6,13 +6,13 @@ WORKDIR /app
 COPY . .
 
 # Install dependencies
-RUN yarn install
+RUN npm install
 
 # Build the application
-RUN yarn build
+RUN npm run build
 
 # Install a simple static file server
-RUN yarn global add serve
+RUN npm install -g serve
 
 # Expose port 3000
 EXPOSE 3000

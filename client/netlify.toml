@@ -1,7 +1,7 @@
 [build]
 command = "yarn workspace client build"
 functions = "functions"
-publish = "dist"
+publish = "/client/dist"
 
 [[redirects]]
 from = "/*"
